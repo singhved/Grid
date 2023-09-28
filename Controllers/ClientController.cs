@@ -15,6 +15,10 @@ namespace Grid.Controllers
         {
             return View();
         }
-
+        public PartialViewResult GetSearchData(string Data)
+        {
+            ViewBag.Data = Data;
+            return PartialView();
+        }
     }
 }

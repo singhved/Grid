@@ -60,7 +60,7 @@
         <div class="col-sm-9"></div>
         <div class="col-sm-3">
             <div class="form-group ">
-                <input class="form-control" id="search" placeholder="Type anything..." />
+                <input class="form-control" id="search" placeholder="Type anything..." onkeyup="getSearchdata()"/>
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
                                         <th>Email</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="MyTBody">
                                     @foreach (var item in clients)
                                     {
                                         sno = sno + 1;
@@ -104,3 +104,11 @@
     </div>
 </div>
 
+<script>
+    function getSearchdata() {
+        var Data = $('#search').val();
+        $.get('/Client/GetSearchData', { Data: Data }, function (data) {
+            $('#MyTBody').html(data);
+        });
+    }
+</script>

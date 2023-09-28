@@ -1,0 +1,20 @@
+﻿
+@{
+    string Data = ViewBag.Data;
+    Grid.Models.Context db = new Grid.Models.Context();
+    List<Grid.Models.Client> clients = db.Clients.ToList();
+    db.Dispose();
+    int sno = 0;
+}
+
+
+@foreach (var item in clients)
+{
+    sno = sno + 1;
+    <tr>
+        <td>@sno</td>
+        <td>@item.Clients</td>
+        <td>@item.ClientCode</td>
+        <td>@item.Country</td>
+    </tr>
+}
