@@ -2,11 +2,10 @@
 @{
     string Data = ViewBag.Data;
     Grid.Models.Context db = new Grid.Models.Context();
-    List<Grid.Models.Client> clients = db.Clients.ToList();
+    List<Grid.Models.Client> clients = db.Clients.Where(x => x.Clients.Contains(Data)).ToList();
     db.Dispose();
     int sno = 0;
 }
-
 
 @foreach (var item in clients)
 {
