@@ -1,0 +1,67 @@
+﻿@{
+    int Id = ViewBag.id;
+    System.Data.DataSet ds = Grid.Models.Procs.Edit(Id);
+    System.Data.DataTable dept = ds.Tables[0];
+    System.Data.DataTable faculty = ds.Tables[1];
+    }
+<h4>Edit</h4>
+<h5>Department Name</h5>
+    
+<form method="post" action="/Dept/Edit">
+    <div class="row">
+        <input type="hidden" id="Id" name="Id" value="@Id" />
+        <div class="col-sm-6">
+            <div class="form-group">
+                <input type="text" class="form-control" id="Name" name="Name" value="@dept.Rows[0]["Name"].ToString()" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                Faculty Name
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="">
+                        @for (int i = 0; i < faculty.Rows.Count; i++)
+                        {
+                            <tr id="Row_@i">
+                                <td>
+                                    <input type="hidden" id="FId_@i" name="FId" value="@faculty.Rows[i]["Id"].ToString()" />
+                                    <input type="text" id="FName_@i" name="FName" class="form-control" value="@faculty.Rows[i]["Name"].ToString()" />
+                                </td>
+                            </tr>
+                        }
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <a type="button" class="btn btn-primary" href="/Dept/List/">
+                    <i class="fa fa-backward"></i>
+                </a>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+

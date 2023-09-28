@@ -1,0 +1,52 @@
+﻿@{
+    int Id = ViewBag.id;
+    int Id2 = ViewBag.id;
+    ViewBag.Title = "Read";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    System.Data.DataTable dt = Grid.Models.Procs.FacultyView(Id);
+    System.Data.DataTable dt2 = Grid.Models.Procs.deptview(Id2);
+    Grid.Models.Context db = new Grid.Models.Context();
+    Grid.Models.Faculty faculty = db.Faculty.FirstOrDefault();
+    Grid.Models.Dept dept = db.Dept.FirstOrDefault();
+    db.Dispose();
+}
+@for (int i = 0; i < dt2.Rows.Count; i++)
+{
+    <h4>Department Name:</h4>
+    <h5 style="color: #b1a699; ">@dt2.Rows[i]["Name"].ToString()</h5>
+
+}
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group table table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+
+                        <th style=" background-color: aliceblue;">
+                            Faculty_Name
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td>@dt.Rows[i]["Name"].ToString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <a type="button" class="btn btn-primary" href="/Dept/List/">
+                <i class="fa fa-backward"></i>
+            </a>
+        </div>
+    </div>
+</div>
+

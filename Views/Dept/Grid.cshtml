@@ -1,0 +1,12 @@
+﻿@{ 
+    int no = ViewBag.no;
+}
+
+    <tr id="Row_@no">
+        <td>
+            <input id="FName_@no" name="FName" class="form-control" placeholder="Faculty Name" />
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger" onclick="delRow('Row_@no')"><i class="fa fa-trash"></i></button>
+        </td>
+    </tr>

@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Client.cshtml";
+    Grid.Models.Context db = new Grid.Models.Context();
+    List<Grid.Models.Client> clients = db.Clients.ToList();
+    db.Dispose();
+    int sno = 0;
+}
+
+<span>@clients.Count</span>
+<div style=" box-shadow: 3px 4px 5px #b5b4d947; border: 1px solid #80808024; padding: 10px;">
+    <div class="row">
+        <div class="col-sm-12">
+            <img src="~/Assets/EduLogo1.png" />
+            <label class="heading">Educare Solutions</label>
+        </div>
+    </div>
+    <hr />
+    <div class="row mt-5">
+        <h5>Request Details</h5>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Name
+                    </dt>
+                    <dd>
+                        : Ved Singh
+                    </dd>
+                    <dt>
+                        Mobile No.
+                    </dt>
+                    <dd>
+                        : 8776768798
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Email
+                    </dt>
+                    <dd>
+                        : vedprakashs03999@gmail.com
+                    </dd>
+                    <dt>
+                        Address
+                    </dt>
+                    <dd>
+                        : Noida Uttar Pradesh 201310
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-3">
+            <div class="form-group ">
+                <input class="form-control" id="search" placeholder="Type anything..." />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <h5>Approved Candidates</h5>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group table-responsive">
+                            <table class="table table-bordered table-sm text-center ">
+                                <thead style="background-color:antiquewhite;">
+                                    <tr>
+                                        <th>
+                                            S.No
+                                        </th>
+                                        <th>Candidate</th>
+                                        <th>Id</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in clients)
+                                    {
+                                        sno = sno + 1;
+                                        <tr>
+                                            <td>@sno</td>
+                                            <td>@item.Clients</td>
+                                            <td>@item.ClientCode</td>
+                                            <td>@item.Country</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

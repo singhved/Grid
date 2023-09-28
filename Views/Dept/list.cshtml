@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    System.Data.DataTable dt = Grid.Models.Procs.DeptTable();
+}
+
+<h2>Index</h2>
+<p class="text-danger">@TempData["Msg"]</p>
+<div class="row">
+    <div class="col-sm-6">
+        <a href="/Dept/index/" type="button" class="btn btn-primary" style="margin-bottom: 15px;">Create Faculty</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>
+                            Faculty Name
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="Body">
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td>@dt.Rows[i]["Name"].ToString()</td>
+                            <td>
+                                <a type="button" class="btn btn-primary" href="/Dept/Read/ @dt.Rows[i]["Id"].ToString()">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a  type="button" class="btn btn-warning" href="/Dept/Edit/@dt.Rows[i]["Id"].ToString()">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a type="button" class="btn btn-danger" href="/Dept/Delete/ @dt.Rows[i]["Id"].ToString()">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

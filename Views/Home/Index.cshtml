@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<form method="post" action="/Home/Save">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="Name" name="Name" class="form-control" placeholder="Enter Name" required />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Mobile</label>
+                <input type="number" id="Mobile" name="Mobile" class="form-control" placeholder="Enter Mobile No." required />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="Email" name="Email" class="form-control" placeholder="Enter Email" required />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2 offset-10">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary form-control" onclick="AddMore()">Add More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                Cosurse
+                            </th>
+                            <th>
+                                Branch
+                            </th>
+                            <th>
+                                Start Date
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTBody">
+                        <tr id="Row_0">
+                            <td>
+                                <input type="text" id="Course_0" name="Course" class="form-control" placeholder="Enter Course" required />
+                            </td>
+                            <td>
+                                <input type="text" id="Branch_0" name="Branch" class="form-control" placeholder="Enter Branch" required />
+                            </td>
+                            <td>
+                                <input type="date" id="Date_0" name="Date" class="form-control" required />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="delRow('Row_0')"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button type="submit">Save</button>
+</form>
+
+<script>
+    var no = 0;
+    function AddMore() {
+        no += 1;
+        $.get('/Home/Grid', { no: no }, function (data) {
+            $('#myTBody').append(data);
+        });
+    }
+
+    function delRow(id) {
+        var rowCount = $('#myTBody tr').length;
+        if (rowCount == 1) {
+            alert(`Can not delete all rows.`)
+        }
+        else {
+            $('#' + id).remove();
+        }
+
+    }
+</script>

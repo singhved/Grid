@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form method="post" action="/Dept/Save">
+<h2>Index</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <input id="Name" name="Name" type="text" class="form-control" placeholder="Department Name" />
+        </div>
+    </div>
+</div>
+<button type="button" onclick="Btn()" class="btn btn-primary" style="margin-bottom: 15px;">Add Faculty</button>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>
+                            Faculty Name
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="Body">
+                    <tr id="Row_0">
+                        <td>
+                            <input id="FName_0" name="FName" class="form-control" placeholder="Faculty Name" value="" />
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="delRow('Row_0')"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<button type="submit">Save</button>
+    </form>
+
+<script>
+    var no = 0;
+    function Btn() {
+        debugger;
+        no += 1;
+        $.get('/Dept/Grid', { no: no }, function (data) {
+            $('#Body').append(data);
+        });
+    }
+
+    function delRow(id) {
+        var rowCount = $('#Body tr').length;
+        if (rowCount == 1) {
+            alert(`Can not delete all rows.`)
+        }
+        else {
+            $('#' + id).remove();
+        }
+    }
+
+</script>
