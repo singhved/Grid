@@ -12,7 +12,7 @@ namespace Grid.Controllers
         Context db = new Context();
         // GET: Client
         public ActionResult Index()
-        {
+        { 
             return View();
         }
         public PartialViewResult GetSearchData(string Data)
